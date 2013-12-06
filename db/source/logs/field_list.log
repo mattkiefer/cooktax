@@ -1,0 +1,23 @@
+# IPython log file
+
+fields = open('field_headers.txt','r')
+fieldstr = ''
+for line in fields:
+    fieldstr += line
+    
+fieldstr
+fields = fieldstr.split(',')
+fields
+fields[:-1]
+fields = fields[:-1]
+get_ipython().magic(u'logstart field_list.log')
+import csv
+data = open('test.csv','r')
+datacsv = csv.DictReader(data,fields)
+datacsv
+for key in datacsv:
+    key
+    
+for key in datacsv:
+    print key
+    

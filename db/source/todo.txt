@@ -1,0 +1,13 @@
+# open data file
+
+# read headers from header file, put them into a string, lowercase and split on delimiter
+
+# open csv file using header list and data file
+
+# dump csv into json 
+
+# prepend model metadata to json fixture
+
+# output json to file
+
+# load data into app

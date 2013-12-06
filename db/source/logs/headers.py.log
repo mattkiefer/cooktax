@@ -1,0 +1,52 @@
+# IPython log file
+
+get_ipython().magic(u'logstart headers')
+headers = open('fields.txt','r')
+for line in headers:
+    splitline = line.split('\t')
+    splitline[1]
+    
+headers = open('fields.txt','r')
+for line in headers:
+    splitline = line.split('\t')
+    print splitline[1]
+    
+headers = open('fields.txt','r')
+field_headers = open('field_headers.txt','w')
+for line in headers:
+    splitline = line.split('\t')
+    field_headers.write(splitline[0] + ',')
+    
+field_headers = open('field_headers.txt','w')
+headers = open('fields.txt','r')
+for line in headers:
+    splitline = line.split('\t')
+    field_headers.write(splitline[0])
+    
+headers = open('fields.txt','r')
+field_headers = open('field_headers.txt','w')
+for line in headers:
+    splitline = line.split('\t')
+    field_headers.write(splitline[1])
+    
+headers = open('fields.txt','r')
+field_headers = open('field_headers.txt','w')
+for line in headers:
+    splitline = line.split('\t')
+    field_headers.write(splitline[1])
+    
+field_headers = open('field_headers.txt','w')
+field_headers.close()
+field_headers = open('field_headers.txt','w')
+headers.close()
+headers = open('fields.txt','r')
+for line in headers:
+    splitline = line.split('\t')
+    field_headers.write(splitline[1])
+    
+field_headers = open('field_headers.txt','w')
+headers = open('fields.txt','r')
+for line in headers:
+    splitline = line.split('\t')
+    print(splitline[1])
+    
