@@ -1,37 +1,39 @@
-import csv, json
+import csv, json, gc
 
 from django.core import management
 
 # import csv data as file
-# datafile = open('test.csv','r')
 datafile = open('FOI22606.CSV','r')
 
-# open file with headers, appending to a string and splitting to a list
+# open file with headers, append to string 
 headerfile = open('field_headers.txt','r')
 headers = ''
 for line in headerfile:
     headers += line
-headers = headers.lower()
-# fix this line break issue
-headers = headers.replace('\n','')
+# lowercase to match django model, get rid of extra line break
+headers = headers.lower().replace('\n','')
+# make a list for csvdict
 headers = headers.split(',')
-
-# metadata
-pk = 1
-model = "compare.property"
 
 # make a csv dict
 datacsv = csv.DictReader(datafile,headers)
 
-# declare empty string, file to hold json fixture
+# declare a string to hold json fixture, start by opening an array
 jsonstring = '['
+# declare a file object to save the json string
 jsonfile = open('output_test.json','w')
 
+# metadata for django fixture: primary key and model name
+pk = 1
+model = "compare.property"
+
 for line in datacsv:
-    jsonstring += '{"pk":' + str(pk) + ','
+    # first add metadata
+    jsonstring += '{"pk":'  + str(pk) + ','
     jsonstring += '"model": "' + model + '",'
     jsonstring += '"fields":'
-    jsonstring += json.dumps(line,encoding='latin1')
+    # dump the csv row here as json key:value pairs
+    jsonstring += json.dumps(line,encoding='latin1') # note encoding
     jsonstring += "},"
     print pk
     pk += 1
@@ -43,9 +45,13 @@ for line in datacsv:
         jsonfile.write(jsonstring)
         jsonfile.close()
         management.call_command('loaddata','output_test.json') 
+        del jsonfile
+        del jsonstring
+        del line
         jsonfile = open('output_test.json','w')
-        jsonfile.write('')
+        # jsonfile.write('')
         jsonstring='['
+        gc.collect()
 # fix this last comma issue
 jsonstring = jsonstring[:-1]
 jsonstring += ']'
@@ -54,34 +60,9 @@ jsonstring += ']'
 # json.dump(datacsv,jsonfile)
 
 # the remaining buffer that wasn't written in the loop
-# jsonfile.write(jsonstring) 
-management.call_command('loaddata',jsonstring)
+jsonfile.write(jsonstring) 
+jsonfile.close()
+management.call_command('loaddata','output_test.json')
 
-print str(pk) + ' records converted from csv to json fixture.'
-
-"""
-# declare dict of derived fields and functions
-derivations = {}
-
-# loop through data
-for line in dfile:
-    for field in line: 
-        record = {}
-        record[headers[counter]] = hfile[counter] 
-        # use counter as index for header, data
-        # if header in list of derived fields
-            # call function to calculate derivation
-        # concatenate header/data together, or use a json library*
-        # write to json file
-         counter += 1
-    fixture.append(record)
-# print how much data has been converted to fixture, etc.
-# prompt to load into django
-# call django import utility
-
-for line in fixture:
-    print line
-"""
 datafile.close()
 headerfile.close()
-jsonfile.close()
