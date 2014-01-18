@@ -1,0 +1,1 @@
+todo: research prior success rates by scraping or requesting database

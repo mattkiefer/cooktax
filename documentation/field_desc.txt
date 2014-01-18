@@ -1,0 +1,36 @@
+﻿aceFOI 22606 File - Fields Description
+
+Seq  	Field             		Text                                          		Len	Dec 
+   1  	PIN               		Property Index No.                            		14    	0 
+   2  	ML_ADDRESS        	Mailing Address                                		50      
+   3  	PL_ADDRESS        	Property Location                              		50      
+   4  	TOWN              		Township                                       	    		13      
+   5  	CLS               		Property Class                                      		  3    	0 
+   6  	CLSDESCR          		Property Classification                    	             150      
+   7  	TRIENNIAL         		Triennial CITY=City N/W=Northwest S/W=South     4      
+   8  	LAND_SQFT         	Land Square Footage                             		   9    	0 
+   9  	BLDG_SQFT         	Building Square Footage                         		   9    	0 
+  10  	NBHD              		Neighborhood                                     		   3    	0 
+  11  	TAX_CODE          	Tax Code                                        			   5    	0 
+  12  	CUR_LAND          	Current Land                                    		   9    	0
+  13  	CUR_BLD           		Current Bldg                                    		   9    	0 
+  14  	CUR_TOTAL         	Current Total                                   		   9    	0 
+  15  	CUR_MKTVAL        	Current Market Value                            		   9    	0 
+  16  	PRI_LAND          		Prior Land                                      			   9    	0 
+  17  	PRI_BLDG          		Prior Bldg                                      			   9    	0 
+  18  	PRI_TOTAL         		Prior Total                                     			   9    	0 
+  19  	PRI_MKTVAL        	Prior Market Value                              		   9    	0 
+  20  	RES_TYPE           		Residence Type                                 		  25      
+  21  	BLDG_USE          	Building Use                                   			  15      
+  22  	NO_OF_APTS        	# of Apartment                                  		     1    	0 
+  Seq   	Field             		Text                                          		Len	Dec 
+ 23  	EXT_CONST         	Exterior Construction                          		15      
+  24  	FULL_BATH        		 Full Baths                                      		 	   1    	0
+  25  	HALF_BATH        	 Half Baths                                      			   1    	0 
+  26  	BSMT              		Basement Description                           		 30      
+  27  	ATTIC             		Attic Description                              		  25      
+  28  	FIRE_PL           		Fireplace Quantity                              		   1    	0 
+  29  	GAR_DES           		Garage Description                             		 20      
+  30  	AGE               		Bldg Age                                             		   3    	0 
+  31  	PASS_NO              		1=FP,2=ASR Cert,3=BOR Cert                      	   1    	0 
+  32  	YEAR              		Assessment Year                                 		   4    	0
