@@ -2,7 +2,7 @@ import csv, json, gc
 
 from django.core import management
 
-# import csv data as file
+#  import csv data as file
 datafile = open('FOI22606.CSV','r')
 
 # open file with headers, append to string 
