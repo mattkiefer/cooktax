@@ -6,7 +6,7 @@ from django.db.models import *
 from compare.models import *
 # p = Property.objects.all()
 
-# import csv data as file
+#  import csv data as file
 datafile = open('FOI22606.CSV','r')
 
 # open file with headers, clean and append to list
