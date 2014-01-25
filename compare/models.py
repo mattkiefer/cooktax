@@ -10,7 +10,7 @@ class Property(models.Model):
     pin = models.IntegerField(primary_key=True) # index
     ml_address=models.CharField(max_length=50)
     pl_address=models.CharField(max_length=50)
-    townid=models.ForeignKey('Town')
+    town=models.ForeignKey('Town')
     cls=models.ForeignKey('BldgClass')
     triennial=models.CharField(max_length=4) # n/w city s/w
     land_sqft=models.IntegerField() # good story idea here
@@ -25,16 +25,16 @@ class Property(models.Model):
     pri_bldg=models.IntegerField()
     pri_total=models.IntegerField()
     pri_mktval=models.IntegerField()
-    res_code=models.ForeignKey('ResType')
-    bldg_code=models.ForeignKey('BldgUse')
+    res=models.ForeignKey('ResType')
+    bldg=models.ForeignKey('BldgUse')
     no_of_apts=models.IntegerField()
-    ext_const_code=models.ForeignKey('ExtConst')
+    ext_const=models.ForeignKey('ExtConst')
     full_bath=models.IntegerField()
     half_bath=models.IntegerField()
-    bsmt_code=models.ForeignKey('Bsmt')
-    attic_code=models.IntegerField('Attic')
+    bsmt=models.ForeignKey('Bsmt')
+    attic=models.ForeignKey('Attic')
     fire_pl=models.IntegerField()
-    gar_code=models.IntegerField('Garage')
+    gar=models.ForeignKey('Garage')
     age=models.IntegerField()
     pass_no=models.IntegerField() # 1, 2
     year=models.IntegerField() # 2013
@@ -43,35 +43,35 @@ class Property(models.Model):
         return self.pin
 
 class Town (models.Model):
-    townid = models.IntegerField(primary_key=True)
-    townname = models.CharField(max_length=20, unique=True)
+    town_id = models.IntegerField(primary_key=True)
+    town = models.CharField(max_length=20, unique=True)
 
 class BldgClass (models.Model):
-    cls=models.IntegerField(primary_key=True) # primary key
+    cls_id=models.IntegerField(primary_key=True) # primary key
     clsdescr=models.CharField(max_length=20, unique=True) # cls
 
 class ResType (models.Model):
-    res_code = models.IntegerField(primary_key=True) 
+    res_id = models.IntegerField(primary_key=True) 
     res_type = models.CharField(max_length=11, unique=True)
 
 class BldgUse (models.Model):
-    bldg_code = models.IntegerField(primary_key=True) 
+    bldg_id = models.IntegerField(primary_key=True) 
     bldg_use = models.CharField(max_length=13, unique=True)
 
 class ExtConst (models.Model):
-    ext_const_code = models.IntegerField(primary_key=True)
-    ext_const_desc = models.CharField(max_length=13, unique=True) 
+    ext_const_id = models.IntegerField(primary_key=True)
+    ext_const = models.CharField(max_length=13, unique=True) 
 
 class Bsmt (models.Model):
-    bsmt_code = models.IntegerField(primary_key=True)
-    bsmt_desc = models.CharField(max_length=26, unique=True) 
+    bsmt_id = models.IntegerField(primary_key=True)
+    bsmt =  models.CharField(max_length=26, unique=True) 
 
 class Attic (models.Model):
-    attic_code = models.IntegerField(primary_key=True)
-    attic_desc = models.CharField(max_length=21, unique=True )
+    attic_id = models.IntegerField(primary_key=True)
+    attic = models.CharField(max_length=21, unique=True )
 
 class Garage (models.Model):
-    gar_code = models.IntegerField(primary_key=True) 
-    gar_desc = models.CharField(max_length=20, unique=True)
+    gar_id = models.IntegerField(primary_key=True) 
+    gar_des = models.CharField(max_length=20, unique=True)
 
 
