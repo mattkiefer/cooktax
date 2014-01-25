@@ -1,6 +1,6 @@
 from django.db import models
 
-# todo
+#  todo
 # normalize tables
 # add indices, pks
 # add fk relations
