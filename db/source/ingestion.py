@@ -62,7 +62,7 @@ for line in datacsv:
         {
          'model_name': 'restype',
          'id': res_type_pk,
-         'value':{'restype':line['res_type']},
+         'value':{'res_type':line['res_type']},
          'value_list': res_types,
         },
         {
@@ -98,8 +98,8 @@ for line in datacsv:
     ]
 
     for related_model in related_models:
-        if related_model['value'] not in related_model['value_list']:
-            fixture = ''
+        if related_model ['value'] not in related_model['value_list']:
+            fixture = '' 
             fixture += '{"pk":'  + str(related_model['id']) + ','
             fixture += '"model": "compare.' + related_model['model_name'] + '",'
             fixture += '"fields":'
@@ -108,7 +108,8 @@ for line in datacsv:
             fixture += "},\n"
             # add this related model fixture to the main fixture
             jsonstring += fixture
-            pprint.pprint(fixture)
+            #pprint.pprint(fixture)
+            fixture = ''
             # print related_model['model_name'] + ' pk: ' + str(related_model['id'])
             # ugh ... hack!
             if related_model['model_name'] == 'town':
@@ -136,11 +137,11 @@ for line in datacsv:
         #buildFixture(related_model['model_name'],related_model['id'],related_model['value'],related_model['value_list'])
 
     # build a new dict specific to the Property model
-    prop = {'pin':line['pin'],
+    prop = {#'pin':line['pin'],
             'ml_address':line['ml_address'],
             'pl_address':line['pl_address'],
-            'town_id':town_pk,
-            'cls_id':line['cls'],
+            'town':town_pk,
+            'cls':line['cls'],
             'triennial':line['triennial'],
             'land_sqft':line['land_sqft'],
             'bldg_sqft':line['bldg_sqft'],
@@ -154,41 +155,43 @@ for line in datacsv:
             'pri_bldg':line['pri_bldg'],
             'pri_total':line['pri_total'],
             'pri_mktval':line['pri_mktval'],
-            'res_id':res_type_pk,
-            'bldg_id':bldg_use_pk,
+            'res':res_type_pk,
+            'bldg':bldg_use_pk,
             'no_of_apts':line['no_of_apts'],
-            'ext_const_id':ext_const_pk,
+            'ext_const':ext_const_pk,
             'full_bath':line['full_bath'],
             'half_bath':line['half_bath'],
-            'bsmt_id':bsmt_pk,
-            'attic_id':attic_pk,
+            'bsmt':bsmt_pk,
+            'attic':attic_pk,
             'fire_pl':line['fire_pl'],
-            'gar_id':garage_pk,
+            'gar':garage_pk,
             'age':line['age'],
             'pass_no':line['pass_no'],
             'year':line['year'],
            }  
 
     # first add metadata
-    jsonstring += '{"pk":'  + str(prop['pin']) + ','
+    jsonstring += '{"pk":'  + str(line['pin']) + ','
     jsonstring += '"model": "compare.property",'
     jsonstring += '"fields":'
     # dump the csv row here as json key:value pairs
     jsonstring += json.dumps(prop,encoding='latin1') # note encoding
-    pprint.pprint(json.dumps(prop))
+    #pprint.pprint(json.dumps(prop))
     jsonstring += "},\n"
     #print 'property pk:' + str(property['pin'])
     # clear out string buffer every 100K lines
-    if record_counter % 1000 == 0:
-        #print '!!!!!!!!!!!!!!!loading last 100K records!!!!!!!!!!!!!!!!!!!!'
-        #jsonstring = jsonstring[:-1] # gets rid of trailing comma
-        #jsonstring += ']'
+    if record_counter % 10000 == 0:
+        jsonstring = jsonstring[:-2] # gets rid of trailing comma
+        jsonstring += ']'
         jsonfile.write(jsonstring)
-        print '\n\n\n\n\n\n\n\n\n' + str(record_counter) + '\n\n\n\n\n\n\n\n\n'
-    #print str(record_counter) + ' records'
+        jsonfile.close()
+        management.call_command('loaddata','fixture.json')
+        jsonfile = open('fixture.json','w')
+        print str(record_counter)
+
     record_counter += 1
 # fix this last comma issue
-jsonstring = jsonstring[:-1]
+jsonstring = jsonstring[:-2]
 jsonstring += ']'
 
 # the remaining buffer that wasn't written in the loop

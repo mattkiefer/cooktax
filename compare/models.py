@@ -48,7 +48,7 @@ class Town (models.Model):
 
 class BldgClass (models.Model):
     cls_id=models.IntegerField(primary_key=True) # primary key
-    clsdescr=models.CharField(max_length=20, unique=True) # cls
+    clsdescr=models.CharField(max_length=20) # todo check uniqueness # cls
 
 class ResType (models.Model):
     res_id = models.IntegerField(primary_key=True) 
