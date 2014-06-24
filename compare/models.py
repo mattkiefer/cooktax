@@ -7,11 +7,11 @@ from django.db import models
 # modify types, max_lengths
 
 class Property(models.Model):
-    pin = models.IntegerField(primary_key=True) # index
+    pin = models.IntegerField(primary_key=True,db_index=True) # index
     ml_address=models.CharField(max_length=50)
     pl_address=models.CharField(max_length=50)
     town=models.ForeignKey('Town')
-    cls=models.ForeignKey('BldgClass')
+    bldg_cls=models.ForeignKey('BldgClass')
     triennial=models.CharField(max_length=4) # n/w city s/w
     land_sqft=models.IntegerField() # good story idea here
     bldg_sqft=models.IntegerField()
@@ -25,8 +25,8 @@ class Property(models.Model):
     pri_bldg=models.IntegerField()
     pri_total=models.IntegerField()
     pri_mktval=models.IntegerField()
-    res=models.ForeignKey('ResType')
-    bldg=models.ForeignKey('BldgUse')
+    res_type=models.ForeignKey('ResType')
+    bldg_use=models.ForeignKey('BldgUse')
     no_of_apts=models.IntegerField()
     ext_const=models.ForeignKey('ExtConst')
     full_bath=models.IntegerField()
@@ -40,38 +40,39 @@ class Property(models.Model):
     year=models.IntegerField() # 2013
     
     def __unicode__(self):
-        return self.pin
+        return unicode(self.pin)
 
 class Town (models.Model):
-    town_id = models.IntegerField(primary_key=True)
-    town = models.CharField(max_length=20, unique=True)
+    town = models.IntegerField(primary_key=True,db_index=True)
+    town_desc = models.CharField(max_length=20, unique=True)
 
 class BldgClass (models.Model):
-    cls_id=models.IntegerField(primary_key=True) # primary key
-    clsdescr=models.CharField(max_length=20) # todo check uniqueness # cls
+    bldg_cls=models.IntegerField(primary_key=True,db_index=True) # primary key
+    bldg_cls_desc=models.CharField(max_length=20)#, unique=True) # cls *** check this
+    old_cls=models.CharField(max_length=4)
 
 class ResType (models.Model):
-    res_id = models.IntegerField(primary_key=True) 
-    res_type = models.CharField(max_length=11, unique=True)
+    res_type = models.IntegerField(primary_key=True,db_index=True) 
+    res_type_desc = models.CharField(max_length=11, unique=True)
 
 class BldgUse (models.Model):
-    bldg_id = models.IntegerField(primary_key=True) 
-    bldg_use = models.CharField(max_length=13, unique=True)
+    bldg_use = models.IntegerField(primary_key=True,db_index=True) 
+    bldg_use_desc = models.CharField(max_length=13, unique=True)
 
 class ExtConst (models.Model):
-    ext_const_id = models.IntegerField(primary_key=True)
-    ext_const = models.CharField(max_length=13, unique=True) 
+    ext_const = models.IntegerField(primary_key=True,db_index=True)
+    ext_const_desc = models.CharField(max_length=13, unique=True) 
 
 class Bsmt (models.Model):
-    bsmt_id = models.IntegerField(primary_key=True)
-    bsmt =  models.CharField(max_length=26, unique=True) 
+    bsmt = models.IntegerField(primary_key=True,db_index=True)
+    bsmt_desc =  models.CharField(max_length=26, unique=True) 
 
 class Attic (models.Model):
-    attic_id = models.IntegerField(primary_key=True)
-    attic = models.CharField(max_length=21, unique=True )
+    attic = models.IntegerField(primary_key=True,db_index=True)
+    attic_desc = models.CharField(max_length=21, unique=True )
 
 class Garage (models.Model):
-    gar_id = models.IntegerField(primary_key=True) 
-    gar_des = models.CharField(max_length=20, unique=True)
+    gar = models.IntegerField(primary_key=True,db_index=True) 
+    gar_desc = models.CharField(max_length=20, unique=True)
 
 

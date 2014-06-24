@@ -12,13 +12,13 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/user/django_projects/cooktax/db/cooktax.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/home3/matthhf3/django-projects/cooktax/db/cooktax.db',                      # Or path to database file if using sqlite3.
         #'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         #'NAME': 'cooktax',      
-        'USER': 'matt',                      # Not used with sqlite3.
-        'PASSWORD': 'matt',                  # Not used with sqlite3.
-        'HOST': '127.0.0.1',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        #'USER': 'matt',                      # Not used with sqlite3.
+        #'PASSWORD': 'matt',                  # Not used with sqlite3.
+        #'HOST': '127.0.0.1',                      # Set to empty string for localhost. Not used with sqlite3.
+        #'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -126,7 +126,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'compare',
-    'csvimport',
+    #'csvimport',
     )
 
 # A sample logging configuration. The only tangible logging
