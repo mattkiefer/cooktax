@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home3/matthhf3/django-projects/cooktax/db/cooktax.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/home/user/django-projects/cooktax/db/cooktax.db',                      # Or path to database file if using sqlite3.
         #'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         #'NAME': 'cooktax',      
         #'USER': 'matt',                      # Not used with sqlite3.

@@ -160,4 +160,3 @@ jsonfile.close()
 management.call_command('loaddata','fixture.json')
 
 datafile.close()
-headerfile.close()
