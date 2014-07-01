@@ -1,0 +1,7 @@
+*.pyc
+*.csv
+*.CSV
+*.swp
+*.db
+*.json
+*/logs/*
