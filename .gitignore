@@ -4,4 +4,4 @@
 *.swp
 *.db
 *.json
-*/logs/*
+db/source/logs/

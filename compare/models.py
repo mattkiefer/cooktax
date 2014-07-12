@@ -7,7 +7,7 @@ from django.db import models
 # modify types, max_lengths
 
 class Property(models.Model):
-    pin = models.IntegerField(primary_key=True,db_index=True) # index
+    pin=models.CharField(primary_key=True,db_index=True,max_length=14) 
     ml_address=models.CharField(max_length=50)
     pl_address=models.CharField(max_length=50)
     town=models.ForeignKey('Town')
@@ -38,9 +38,25 @@ class Property(models.Model):
     age=models.IntegerField()
     pass_no=models.IntegerField() # 1, 2
     year=models.IntegerField() # 2013
-    
+    #coolpic = models.Boolean() # 01011000030000 
+
+    #this should come in through ingestion
+    @property
+    def quo_cmv_bsf(self): # quotient: current market value / bldg sq ft 
+        return round(self.cur_mktval / float(self.bldg_sqft),2)
+
+    @property
+    def img_url(self):
+        url = 'http://www.cookcountyassessor.com/ImageStreamer/StreamImage.aspx?pin=' + str(self.pin14(self.pin))
+        return url
+
     def __unicode__(self):
         return unicode(self.pin)
+
+    def pin14(self,pin):
+        if len(str(pin)) == 13:
+            pin = '0' + str(pin)
+        return pin
 
 class Town (models.Model):
     town = models.IntegerField(primary_key=True,db_index=True)

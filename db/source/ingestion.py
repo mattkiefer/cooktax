@@ -86,7 +86,7 @@ for line in datacsv:
     # build a new dict specific to the Property model
     prop = {'pin':line['pin'],
             'ml_address':line['ml_address'],
-            'pl_address':line['pl_address'],
+            'pl_address':line['pl_address'], # .replace(' - ','\n')
             'town':get_rel_model_id('town',line['town']),
             'bldg_cls':get_rel_model_id('clsdescr',line['clsdescr']),
             'triennial':line['triennial'],
