@@ -1,0 +1,29 @@
+{% load staticfiles %} 
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
+</head>
+
+
+{% if object_list %}
+    <h1>Your comparables</h1>
+    {% for object in object_list %}
+        {% if object.pin == home.pin %}
+            <div class="prop home">    
+	    <h4>Your home</h4>	   
+        {% else %}
+            <div class="prop comp">
+        {% endif %}    
+        <h2>{{ object.pl_address }}</h2>
+        <!--<img src="{{ object.img_url }}" /><br />-->
+        <img src="http://placekitten.com/408/287" />
+        <h3>Assessment: ${{ object.quo_cmv_bsf }}/square foot</h3>
+	</div>
+    {% endfor %}
+{% else %}
+    <form method = "get" action = ""?
+        <table>
+            {{ formset }}
+        </table>
+     </form>
+{% endif %}
