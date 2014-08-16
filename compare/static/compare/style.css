@@ -1,0 +1,24 @@
+body {
+    text-align: center;
+    font-family: arial;
+    background-color: #EEEEEE;
+}
+
+.prop {
+    margin-top: 50px;
+    margin-bottom: 70px;
+    background-color: #DDDDDD;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 10px;
+}
+
+.home {
+    background-color: #CCEEDD;
+}
+
+
+.prop h2 {
+    padding-top: 20px;
+}
+
