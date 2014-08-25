@@ -1,10 +1,13 @@
 {% load staticfiles %} 
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static "/compare/style.css" %}" />
+    <link rel="stylesheet" type="text/css" href={% static "compare/style.css" %} />
 </head>
 
+
 <h1>Your comparables</h1>
+
+<a href="{% url lookupfoo %}">Back to search </a>
 
 {% for object in object_list %}
     {% if object.pin == home.pin %}
